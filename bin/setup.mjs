@@ -236,6 +236,18 @@ ADMIN_SECRET=${generateRandomString(32)}
 
   print(`  → Updated ${accent("portfolio.config.ts")} with your info`);
 
+  // ── Telemetry opt-in ───────────────────────────────────────────────
+  print();
+  const telemetry = await ask("Help us improve Portfolio Speedrun by sharing anonymous usage data? (y/N): ");
+  if (telemetry.toLowerCase() === "y" || telemetry.toLowerCase() === "yes") {
+    // Append telemetry flag to .env.local
+    const envContent = fs.readFileSync(envPath, "utf-8");
+    fs.writeFileSync(envPath, envContent + "\n# Anonymous telemetry (opt-in)\nTELEMETRY_ENABLED=true\n", "utf-8");
+    print(`  → ${dim("Telemetry enabled. No personal data is ever sent. You can disable it anytime.")}`);
+  } else {
+    print(`  → ${dim("No worries! Telemetry is off.")}`);
+  }
+
   // ── Done! ──────────────────────────────────────────────────────────
   print();
   print(accent("════════════════════════════════════════════════════════════"));
