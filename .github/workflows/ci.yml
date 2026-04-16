@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Tier 1: Static validation (free, fast) ──────────────────────────
+  test:
+    name: Tests & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+  # ── Build matrix: verify all presets compile ────────────────────────
+  build:
+    name: Build (${{ matrix.preset }})
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      matrix:
+        preset: [default, videographer, photographer, designer]
+    env:
+      ADMIN_PASSWORD: ci-test-password
+      ADMIN_SECRET: ci-test-secret-at-least-32-characters-long
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # For non-default presets, swap the config before building
+      - name: Apply preset config
+        if: matrix.preset != 'default'
+        run: |
+          node -e "
+            const fs = require('fs');
+            const preset = require('./presets/${{ matrix.preset }}').default;
+            const config = require('./portfolio.config').default;
+            // Merge preset into existing config
+            const merged = { ...config, ...preset };
+            const content = \`import type { PortfolioConfig } from './src/lib/config';
+            const config: PortfolioConfig = \${JSON.stringify(merged, null, 2)};
+            export default config;\`;
+            fs.writeFileSync('portfolio.config.ts', content);
+          "
+
+      - name: Build
+        run: npm run build
+
+  # ── Lighthouse CI (on PRs only) ────────────────────────────────────
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+    env:
+      ADMIN_PASSWORD: ci-test-password
+      ADMIN_SECRET: ci-test-secret-at-least-32-characters-long
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Start server
+        run: npm start &
+        env:
+          PORT: 3000
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000 --timeout 30000
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:3000
+          budgetPath: .github/lighthouse-budget.json
+          uploadArtifacts: true
