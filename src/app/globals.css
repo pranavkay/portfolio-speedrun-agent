@@ -1,14 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Theme colors — mapped from portfolio.config.ts palette */
-  --color-theme-bg: var(--portfolio-bg, #050505);
-  --color-theme-bg-light: var(--portfolio-bg-light, #121212);
-  --color-theme-bg-card: var(--portfolio-bg-card, #1e1e1e);
-  --color-theme-accent: var(--portfolio-accent, #c0a062);
-  --color-theme-accent-hover: var(--portfolio-accent-hover, #e0c078);
-
-  /* Legacy aliases for backward compatibility */
+  /* Theme colors — set by ThemeProvider/DemoTheme at runtime */
   --color-cinema-950: var(--portfolio-bg, #050505);
   --color-cinema-900: var(--portfolio-bg-light, #121212);
   --color-cinema-800: var(--portfolio-bg-card, #1e1e1e);
@@ -24,18 +17,15 @@ body {
   color: var(--portfolio-text, #e5e5e5);
 }
 
-/* Selection styling */
 ::selection {
   background-color: var(--portfolio-accent, #c0a062);
   color: var(--portfolio-text-on-accent, black);
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Line clamp utility */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
