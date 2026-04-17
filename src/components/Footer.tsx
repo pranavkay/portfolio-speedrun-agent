@@ -87,7 +87,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
 
       <div className="max-w-6xl mx-auto mt-6 text-center">
         <a
-          href="https://github.com/example/portfolio-speedrun-agent"
+          href="https://github.com/pranavkay/portfolio-speedrun-agent"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-[10px] text-gray-700 hover:text-gray-500 transition-colors tracking-wider uppercase"

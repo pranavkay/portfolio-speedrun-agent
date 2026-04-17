@@ -93,7 +93,7 @@ const config: PortfolioConfig = {
 
   // ── SEO ──────────────────────────────────────────────────────────────
   seo: {
-    siteUrl: "https://example.com",
+    siteUrl: "https://portfolio.startupspeedrun.org",
     locale: "en-US",
     serviceTypes: [
       "Cinematography",

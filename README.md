@@ -4,7 +4,7 @@
 
 An AI-powered portfolio template for videographers, photographers, and designers. Edit one config file (or let Claude Code / Codex do it for you) and deploy to Vercel for free.
 
-Part of the [Startup Speedrun](https://github.com/example) project.
+Part of the [Startup Speedrun](https://github.com/pranavkay) project.
 
 ---
 
@@ -20,7 +20,7 @@ Part of the [Startup Speedrun](https://github.com/example) project.
 ### Option B: Use the setup wizard
 
 ```bash
-git clone https://github.com/example/portfolio-speedrun-agent.git
+git clone https://github.com/pranavkay/portfolio-speedrun-agent.git
 cd portfolio-speedrun-agent
 npm install
 npm run setup
@@ -146,4 +146,4 @@ MIT
 
 ---
 
-Built with the Portfolio Speedrun Agent by [Startup Speedrun](https://github.com/example).
+Built with the Portfolio Speedrun Agent by [Startup Speedrun](https://github.com/pranavkay).

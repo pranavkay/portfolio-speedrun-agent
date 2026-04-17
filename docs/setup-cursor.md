@@ -24,7 +24,7 @@ Open your terminal:
 Type these commands one at a time:
 
 ```
-git clone https://github.com/example/portfolio-speedrun-agent.git
+git clone https://github.com/pranavkay/portfolio-speedrun-agent.git
 cd portfolio-speedrun-agent
 npm install
 ```
