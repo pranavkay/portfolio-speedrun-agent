@@ -12,13 +12,15 @@ import { DemoTheme } from "./DemoTheme";
 import { demoPresets, presetKeys } from "@/lib/demo-content";
 import type { PresetKey } from "@/lib/demo-content";
 
+type Params = { preset: string };
+
 export function generateStaticParams() {
   return presetKeys.map((preset) => ({ preset }));
 }
 
-export function generateMetadata({ params }: { params: { preset: string } }): Metadata {
-  const key = params.preset as PresetKey;
-  const demo = demoPresets[key];
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const { preset } = await params;
+  const demo = demoPresets[preset as PresetKey];
   if (!demo) return {};
   return {
     title: `${demo.label} Demo — Portfolio Speedrun`,
@@ -26,8 +28,9 @@ export function generateMetadata({ params }: { params: { preset: string } }): Me
   };
 }
 
-export default function DemoPage({ params }: { params: { preset: string } }) {
-  const key = params.preset as PresetKey;
+export default async function DemoPage({ params }: { params: Promise<Params> }) {
+  const { preset } = await params;
+  const key = preset as PresetKey;
   const demo = demoPresets[key];
 
   if (!demo) notFound();
