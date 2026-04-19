@@ -1,7 +1,30 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Theme colors — set by ThemeProvider/DemoTheme at runtime */
+  /* Surface colors */
+  --color-surface: var(--portfolio-bg, #050505);
+  --color-surface-light: var(--portfolio-bg-light, #121212);
+  --color-surface-card: var(--portfolio-bg-card, #1e1e1e);
+  --color-surface-deep: var(--portfolio-bg-deep, #000000);
+  --color-accent: var(--portfolio-accent, #c0a062);
+  --color-accent-hover: var(--portfolio-accent-hover, #e0c078);
+
+  /* Text colors */
+  --color-heading: var(--portfolio-heading, #ffffff);
+  --color-body: var(--portfolio-body, #e5e5e5);
+  --color-muted: var(--portfolio-muted, #a1a1aa);
+  --color-faint: var(--portfolio-faint, #71717a);
+  --color-on-accent: var(--portfolio-on-accent, #000000);
+
+  /* Border colors */
+  --color-border: var(--portfolio-border, rgba(255,255,255,0.05));
+  --color-border-accent: var(--portfolio-border-accent, rgba(255,255,255,0.1));
+
+  /* Overlay */
+  --color-overlay: var(--portfolio-overlay, rgba(0,0,0,0.9));
+  --color-overlay-light: var(--portfolio-overlay-light, rgba(0,0,0,0.4));
+
+  /* Legacy aliases — keep for backward compat */
   --color-cinema-950: var(--portfolio-bg, #050505);
   --color-cinema-900: var(--portfolio-bg-light, #121212);
   --color-cinema-800: var(--portfolio-bg-card, #1e1e1e);
@@ -13,13 +36,13 @@
 }
 
 body {
-  background-color: var(--portfolio-bg, #050505);
-  color: var(--portfolio-text, #e5e5e5);
+  background-color: var(--color-surface);
+  color: var(--color-body);
 }
 
 ::selection {
-  background-color: var(--portfolio-accent, #c0a062);
-  color: var(--portfolio-text-on-accent, black);
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
 }
 
 html {

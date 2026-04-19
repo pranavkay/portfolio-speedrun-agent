@@ -9,7 +9,6 @@ export function Footer({ settings }: { settings: SiteSettings }) {
     : null;
   const telNumber = settings.phone || (settings.whatsapp ? `+${settings.whatsapp}` : null);
 
-  // Build social links from settings.socials (dynamic, not hardcoded)
   const socialLinks = Object.entries(settings.socials)
     .filter(([, url]) => url && url !== "#")
     .map(([key, url]) => {
@@ -20,13 +19,13 @@ export function Footer({ settings }: { settings: SiteSettings }) {
     .filter(Boolean) as { key: string; url: string; icon: React.FC<{ className?: string }>; label: string }[];
 
   return (
-    <footer id="contact" className="bg-black border-t border-cinema-accent/20 py-20 px-4">
+    <footer id="contact" className="bg-surface-deep border-t border-accent/20 py-20 px-4">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
         <div className="text-center md:text-left">
-          <p className="font-serif text-3xl text-white mb-2">
+          <p className="font-serif text-3xl text-heading mb-2">
             {settings.name.toUpperCase()}
           </p>
-          <p className="text-cinema-accent text-sm tracking-widest uppercase">
+          <p className="text-accent text-sm tracking-widest uppercase">
             {settings.role}
           </p>
         </div>
@@ -41,7 +40,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               className="group flex flex-col items-center gap-2"
               aria-label={label}
             >
-              <div className="p-3 bg-cinema-900 rounded-full text-gray-400 group-hover:text-black group-hover:bg-cinema-accent transition-all duration-300">
+              <div className="p-3 bg-surface-light rounded-full text-muted group-hover:text-on-accent group-hover:bg-accent transition-all duration-300">
                 <Icon />
               </div>
             </a>
@@ -54,7 +53,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               className="group flex flex-col items-center gap-2"
               aria-label="WhatsApp"
             >
-              <div className="p-3 bg-cinema-900 rounded-full text-gray-400 group-hover:text-black group-hover:bg-cinema-accent transition-all duration-300">
+              <div className="p-3 bg-surface-light rounded-full text-muted group-hover:text-on-accent group-hover:bg-accent transition-all duration-300">
                 <MessageCircle className="w-5 h-5" />
               </div>
             </a>
@@ -65,7 +64,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               className="group flex flex-col items-center gap-2"
               aria-label="Call"
             >
-              <div className="p-3 bg-cinema-900 rounded-full text-gray-400 group-hover:text-black group-hover:bg-cinema-accent transition-all duration-300">
+              <div className="p-3 bg-surface-light rounded-full text-muted group-hover:text-on-accent group-hover:bg-accent transition-all duration-300">
                 <Phone className="w-5 h-5" />
               </div>
             </a>
@@ -73,14 +72,11 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 uppercase tracking-wider">
-        <p>
-          &copy; {new Date().getFullYear()} {settings.name}. All rights
-          reserved.
-        </p>
+      <div className="max-w-6xl mx-auto mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-faint uppercase tracking-wider">
+        <p>&copy; {new Date().getFullYear()} {settings.name}. All rights reserved.</p>
         <div className="flex gap-6">
-          <Link href="/privacy" className="hover:text-cinema-accent transition-colors">Privacy Policy</Link>
-          <Link href="/terms" className="hover:text-cinema-accent transition-colors">Terms</Link>
+          <Link href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-accent transition-colors">Terms</Link>
         </div>
         <p>Based in {settings.location}</p>
       </div>
@@ -90,7 +86,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           href="https://github.com/pranavkay/portfolio-speedrun-agent"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-[10px] text-gray-700 hover:text-gray-500 transition-colors tracking-wider uppercase"
+          className="inline-flex items-center gap-1.5 text-[10px] text-faint/50 hover:text-faint transition-colors tracking-wider uppercase"
         >
           <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
           Built with Portfolio Speedrun

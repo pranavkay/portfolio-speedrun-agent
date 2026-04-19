@@ -48,7 +48,7 @@ export function ProjectCard({
 
   return (
     <div
-      className="group relative aspect-video bg-cinema-900 rounded-lg overflow-hidden cursor-pointer border border-white/5 hover:border-cinema-accent/30 transition-all duration-500"
+      className="group relative aspect-video bg-surface-light rounded-lg overflow-hidden cursor-pointer border border-border hover:border-accent/30 transition-all duration-500"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       role="button"
@@ -65,23 +65,23 @@ export function ProjectCard({
           onError={() => setImgError(true)}
         />
       ) : (
-        <div className="w-full h-full bg-gradient-to-br from-cinema-800 to-cinema-950 flex items-center justify-center">
-          <span className="text-cinema-accent text-4xl font-serif" aria-hidden="true">
+        <div className="w-full h-full bg-gradient-to-br from-surface-card to-surface flex items-center justify-center">
+          <span className="text-accent text-4xl font-serif" aria-hidden="true">
             {project.title.charAt(0)}
           </span>
         </div>
       )}
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90" />
+      <div className="absolute inset-0 bg-overlay-light group-hover:bg-transparent transition-colors duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-t from-surface-deep/90 via-surface-deep/20 to-transparent opacity-90" />
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-        <span className="inline-block px-2 py-1 mb-2 text-xs font-medium bg-cinema-accent/90 text-black rounded-sm backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
+        <span className="inline-block px-2 py-1 mb-2 text-xs font-medium bg-accent/90 text-on-accent rounded-sm backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
           {project.category}
         </span>
-        <h3 className="text-white text-lg font-medium leading-tight line-clamp-2 group-hover:text-cinema-accent transition-colors">
+        <h3 className="text-white text-lg font-medium leading-tight line-clamp-2 group-hover:text-accent transition-colors">
           {project.title}
         </h3>
       </div>
