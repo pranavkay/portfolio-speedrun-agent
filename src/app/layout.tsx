@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter, DM_Serif_Display, DM_Sans, Cormorant_Garamond, Montserrat, Libre_Baskerville, Source_Sans_3 } from "next/font/google";
+import {
+  Playfair_Display, Inter, DM_Serif_Display, DM_Sans,
+  Cormorant_Garamond, Montserrat, Libre_Baskerville, Source_Sans_3,
+  Syne, Press_Start_2P,
+} from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
-// ── Google Font Loaders ─────────────────────────────────────────────
-// Load all font pairings so demos can switch between them at runtime.
-
+// ── Portfolio preset fonts ──────────────────────────────────────────
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", display: "swap" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const dmSerif = DM_Serif_Display({ subsets: ["latin"], weight: "400", variable: "--font-dm-serif", display: "swap" });
@@ -14,15 +18,15 @@ const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat
 const libreBaskerville = Libre_Baskerville({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-libre", display: "swap" });
 const sourceSans = Source_Sans_3({ subsets: ["latin"], variable: "--font-source-sans", display: "swap" });
 
+// ── Startup Speedrun brand fonts ────────────────────────────────────
+const syne = Syne({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-syne", display: "swap" });
+const pressStart = Press_Start_2P({ subsets: ["latin"], weight: "400", variable: "--font-pixel", display: "swap" });
+
 const fontVars = [
-  playfair.variable,
-  inter.variable,
-  dmSerif.variable,
-  dmSans.variable,
-  cormorant.variable,
-  montserrat.variable,
-  libreBaskerville.variable,
-  sourceSans.variable,
+  playfair.variable, inter.variable, dmSerif.variable, dmSans.variable,
+  cormorant.variable, montserrat.variable, libreBaskerville.variable, sourceSans.variable,
+  syne.variable, pressStart.variable,
+  GeistSans.variable, GeistMono.variable,
 ].join(" ");
 
 // ── Metadata ────────────────────────────────────────────────────────
@@ -30,15 +34,15 @@ const fontVars = [
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio.startupspeedrun.org"),
   title: {
-    default: "Portfolio Speedrun — Build Your Creative Portfolio in 30 Minutes",
-    template: "%s | Portfolio Speedrun",
+    default: "Portfolio Builder — Startup Speedrun",
+    template: "%s | Portfolio Builder — Startup Speedrun",
   },
-  description: "Free, open-source portfolio template for videographers, photographers, and designers. AI-powered setup. Deploy in 30 minutes.",
+  description: "Free, open-source portfolio template for creative freelancers. Paste one prompt into Claude Code or Codex. AI builds the rest. Part of the Startup Speedrun give-it-forward initiative.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050505",
-  colorScheme: "dark",
+  themeColor: "#8B78E6",
+  colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
 };

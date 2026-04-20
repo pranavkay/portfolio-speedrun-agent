@@ -15,17 +15,18 @@ export function CopyPromptButton({ prompt }: { prompt: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium tracking-wider uppercase text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded transition-all"
+      className="flex items-center gap-2 px-3 py-1.5 bg-[#8B78E6] text-white border-[2px] border-white/20 hover:bg-[#7264C4] transition-colors cursor-pointer"
+      style={{ fontFamily: "var(--font-pixel, 'Press Start 2P', monospace)", fontSize: "8px", letterSpacing: "0.05em" }}
     >
       {copied ? (
         <>
-          <Check className="w-3.5 h-3.5 text-green-400" />
-          <span className="text-green-400">Copied!</span>
+          <Check className="w-3 h-3 text-[#27C93F]" />
+          COPIED!
         </>
       ) : (
         <>
-          <Copy className="w-3.5 h-3.5" />
-          Copy
+          <Copy className="w-3 h-3" />
+          COPY
         </>
       )}
     </button>
