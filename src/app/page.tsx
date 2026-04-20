@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Terminal, Settings, Zap, Palette, Globe, Search, Share2, Smartphone, Code2 } from "lucide-react";
 import { CopyPromptButton } from "./CopyPromptButton";
+import { TrackClick } from "./TrackClick";
 
 export const metadata: Metadata = {
   title: "Portfolio Builder — Startup Speedrun",
@@ -253,10 +254,10 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {presets.map((preset) => (
+              <TrackClick key={preset.key} event="demo_clicked" properties={{ preset: preset.key }}>
               <Link
-                key={preset.key}
                 href={`/demo/${preset.key}`}
-                className="group retro-window hover:-translate-y-1 hover:shadow-[6px_6px_0_#111] transition-all duration-200"
+                className="group retro-window hover:-translate-y-1 hover:shadow-[6px_6px_0_#111] transition-all duration-200 block"
               >
                 <RetroWindowBar title={preset.accentName.toUpperCase()} />
                 {/* Swatch */}
@@ -277,6 +278,7 @@ export default function LandingPage() {
                   </span>
                 </div>
               </Link>
+              </TrackClick>
             ))}
           </div>
         </div>

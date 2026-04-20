@@ -3,6 +3,12 @@
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 
+declare global {
+  interface Window {
+    posthog?: { capture: (event: string, properties?: Record<string, unknown>) => void };
+  }
+}
+
 export function CopyPromptButton({ prompt }: { prompt: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -10,6 +16,9 @@ export function CopyPromptButton({ prompt }: { prompt: string }) {
     await navigator.clipboard.writeText(prompt);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+
+    // Track the copy event
+    window.posthog?.capture("prompt_copied");
   };
 
   return (
