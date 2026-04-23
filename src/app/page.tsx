@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Terminal, Settings, Zap, Palette, Globe, Search, Share2, Smartphone, Code2 } from "lucide-react";
 import { CopyPromptButton } from "./CopyPromptButton";
 import { TrackClick } from "./TrackClick";
+import { GitHubStarButton } from "./GitHubStarButton";
 
 export const metadata: Metadata = {
   title: "Portfolio Builder — Startup Speedrun",
@@ -99,10 +100,8 @@ export default function LandingPage() {
               Portfolio Builder
             </span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href={REPO_URL} target="_blank" rel="noopener noreferrer" className="text-xs text-[#6B6B7B] hover:text-[#111] transition-colors tracking-wider uppercase hidden sm:inline" style={{ fontFamily: "var(--font-syne)" }}>
-              GitHub
-            </Link>
+          <div className="flex items-center gap-3">
+            <GitHubStarButton variant="light" />
             <Link
               href="#start"
               className="inline-flex items-center gap-2 px-4 py-2 bg-[#F02DF0] text-white border-[3px] border-[#111] shadow-[3px_3px_0_#111] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#111] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all pixel-text"
@@ -353,13 +352,19 @@ export default function LandingPage() {
           <p className="text-white/50 mb-10 max-w-md mx-auto" style={{ fontFamily: "var(--font-geist-sans)" }}>
             Open your AI tool. Paste the prompt. Your portfolio is live before lunch.
           </p>
-          <Link
-            href="#start"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#F02DF0] text-white border-[3px] border-white/20 shadow-[4px_4px_0_rgba(255,255,255,0.1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_rgba(255,255,255,0.1)] transition-all pixel-text"
-          >
-            <Terminal className="w-4 h-4" />
-            Copy the Prompt
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              href="#start"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#F02DF0] text-white border-[3px] border-white/20 shadow-[4px_4px_0_rgba(255,255,255,0.1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_rgba(255,255,255,0.1)] transition-all pixel-text"
+            >
+              <Terminal className="w-4 h-4" />
+              Copy the Prompt
+            </Link>
+            <GitHubStarButton variant="dark" />
+          </div>
+          <p className="pixel-text text-white/30 mt-6 text-[9px]">
+            Free tool? ★ Gives us a star. Helps others find it.
+          </p>
         </div>
       </section>
 
